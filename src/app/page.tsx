@@ -801,7 +801,7 @@ export default function Home() {
 
           {/* Mascot — right side, near headline level */}
           <div className="hidden lg:block absolute top-[42%] right-6 xl:right-12 z-10 pointer-events-none">
-            <Mascot src="hero-greeting.png" alt="Kiro and Orbit waving hello" width={170} float />
+            <Mascot src="hero-greeting.png" alt="Kiro and Orbit waving hello" width={140} float />
           </div>
 
 
@@ -835,7 +835,7 @@ export default function Home() {
               </div>
               {/* Mobile/tablet mascot — below CTA link */}
               <div className="lg:hidden mt-10 flex justify-center pointer-events-none">
-                <Mascot src="hero-greeting.png" alt="Kiro and Orbit waving hello" width={160} float />
+                <Mascot src="hero-greeting.png" alt="Kiro and Orbit waving hello" width={140} float />
               </div>
             </FadeIn>
 
@@ -937,7 +937,7 @@ export default function Home() {
         <section id="services" className="relative py-28 lg:py-32 px-6 md:px-12 lg:px-16">
           {/* Mascot — right side near headline */}
           <div className="hidden lg:block absolute top-32 right-8 xl:right-16 z-10 pointer-events-none">
-            <Mascot src="kiro-idea.png" alt="Kiro with an idea lightbulb" width={150} float />
+            <Mascot src="orbit-front.png" alt="Orbit looking forward" width={140} float />
           </div>
           <div className="mx-auto max-w-[1200px]">
             <FadeIn className="max-w-3xl mb-14">
@@ -1048,7 +1048,7 @@ export default function Home() {
                   <FadeIn className={`relative lg:col-span-5 ${reverse ? "lg:order-2" : ""}`}>
                     {i === 1 && (
                       <div className="hidden md:block absolute -top-10 -right-4 lg:-top-12 lg:-right-8 z-20 pointer-events-none">
-                        <Mascot src={f.mascot} alt={f.mascotAlt} width={150} float delay={0.05} />
+                        <Mascot src={f.mascot} alt={f.mascotAlt} width={140} float delay={0.05} />
                       </div>
                     )}
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -1071,7 +1071,7 @@ export default function Home() {
                     {f.visual.kind === "work" && <FeatureVisualWork />}
                     {i === 0 && (
                       <div className="absolute -top-14 -right-6 z-20 pointer-events-none hidden md:block">
-                        <Mascot src={f.mascot} alt={f.mascotAlt} width={150} float delay={0.05} />
+                        <Mascot src={f.mascot} alt={f.mascotAlt} width={140} float delay={0.05} />
                       </div>
                     )}
                   </FadeIn>
@@ -1166,7 +1166,7 @@ export default function Home() {
                 <FadeIn key={p.step} delay={i * 0.07}>
                   <div className="relative flex flex-col gap-4">
                     <div className="absolute -top-8 -right-2 z-10 pointer-events-none">
-                      <Mascot src={p.mascot} alt={p.mascotAlt} width={110} float delay={i * 0.1} />
+                      <Mascot src={p.mascot} alt={p.mascotAlt} width={90} float delay={i * 0.1} />
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-6xl font-extralight tracking-tight text-foreground/90 tabular-nums">
@@ -1188,7 +1188,7 @@ export default function Home() {
         {/* ─────────── CONTACT ─────────── */}
         <section id="contact" className="relative overflow-hidden py-28 lg:py-32 px-6 md:px-12 lg:px-16 border-t border-border/30">
           <div className="absolute top-6 right-6 lg:top-10 lg:right-12 z-10 pointer-events-none">
-            <Mascot src="fist-bump.png" alt="Kiro and Orbit fist bump" width={180} float />
+            <Mascot src="kiro-idea.png" alt="Kiro with an idea lightbulb" width={140} float />
           </div>
           <div className="mx-auto max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
             <FadeIn className="lg:col-span-7">
