@@ -227,32 +227,40 @@ export function UseCaseTabs() {
 
   return (
     <div className="w-full">
-      {/* Tab strip */}
-      <div className="flex items-center gap-1.5 flex-wrap mb-10">
-        {cases.map((c) => {
-          const isActive = c.id === active;
-          return (
-            <button
-              key={c.id}
-              onClick={() => setActive(c.id)}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-300 ${
-                isActive
-                  ? "text-background"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-              style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
-            >
-              {isActive && (
-                <motion.span
-                  layoutId="tab-pill"
-                  className="absolute inset-0 rounded-full bg-foreground"
-                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                />
-              )}
-              <span className="relative z-10">{c.label}</span>
-            </button>
-          );
-        })}
+      {/* Tab strip — horizontal scroll on mobile, single row */}
+      <div
+        className="-mx-6 md:mx-0 px-6 md:px-0 mb-10 overflow-x-auto"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        <style jsx>{`
+          div::-webkit-scrollbar { display: none; }
+        `}</style>
+        <div className="flex items-center gap-1.5 w-max md:w-auto md:flex-wrap">
+          {cases.map((c) => {
+            const isActive = c.id === active;
+            return (
+              <button
+                key={c.id}
+                onClick={() => setActive(c.id)}
+                className={`relative shrink-0 rounded-full px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-300 ${
+                  isActive
+                    ? "text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="tab-pill"
+                    className="absolute inset-0 rounded-full bg-foreground"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">{c.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Active panel */}
