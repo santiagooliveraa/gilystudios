@@ -833,6 +833,10 @@ export default function Home() {
                   Or see how it works →
                 </Link>
               </div>
+              {/* Mobile/tablet mascot — below CTA link */}
+              <div className="lg:hidden mt-10 flex justify-center pointer-events-none">
+                <Mascot src="hero-greeting.png" alt="Kiro and Orbit waving hello" width={160} float />
+              </div>
             </FadeIn>
 
           </div>
@@ -960,16 +964,22 @@ export default function Home() {
           </div>
 
           <FadeIn className="px-6 md:px-12 lg:px-16 mb-12">
-            <div className="mx-auto max-w-[1400px] flex items-end justify-between gap-6">
-              <div>
-                <EyebrowTag>Real outcomes</EyebrowTag>
-                <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.05] text-balance max-w-2xl">
-                  What people get back.
-                </h2>
+            <div className="mx-auto max-w-[1400px]">
+              {/* Mobile/tablet mascot — above the headline */}
+              <div className="lg:hidden mb-6 flex justify-end pointer-events-none">
+                <Mascot src="duo-pointing.png" alt="Kiro and Orbit pointing at outcomes" width={130} float />
               </div>
-              <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                Selected · 2026
-              </span>
+              <div className="flex items-end justify-between gap-6">
+                <div>
+                  <EyebrowTag>Real outcomes</EyebrowTag>
+                  <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.05] text-balance max-w-2xl">
+                    What people get back.
+                  </h2>
+                </div>
+                <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Selected · 2026
+                </span>
+              </div>
             </div>
           </FadeIn>
 
@@ -1073,9 +1083,17 @@ export default function Home() {
 
         {/* ─────────── INDUSTRIES GRID ─────────── */}
         {/* ─────────── STACK ─────────── */}
-        <section className="py-24 lg:py-28 px-6 md:px-12 lg:px-16 border-t border-border/30">
+        <section className="relative py-24 lg:py-28 px-6 md:px-12 lg:px-16 border-t border-border/30">
+          {/* Desktop mascot — top right corner peek */}
+          <div className="hidden lg:block absolute top-6 right-8 xl:right-16 z-10 pointer-events-none">
+            <Mascot src="kiro-dashboard.png" alt="Kiro presenting the tools we use" width={140} float />
+          </div>
           <div className="mx-auto max-w-[1200px]">
             <FadeIn className="max-w-3xl mb-12">
+              {/* Mobile/tablet mascot — above the headline */}
+              <div className="lg:hidden mb-6 flex justify-end pointer-events-none">
+                <Mascot src="kiro-dashboard.png" alt="Kiro presenting the tools we use" width={130} float />
+              </div>
               <EyebrowTag>Stack we ship with</EyebrowTag>
               <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.05] text-balance">
                 Production-grade tools.{" "}
