@@ -112,9 +112,38 @@ export function CalendarVisual() {
   };
   return (
     <Frame label="Content Calendar" status="Live">
-      <div className="grid grid-cols-7 gap-1.5">
+      {/* Mobile — vertical list per day (labels never get clipped) */}
+      <div className="sm:hidden space-y-2">
         {days.map((d) => (
-          <div key={d} className="rounded-lg bg-foreground/[0.02] border border-border/30 p-2 min-h-[140px]">
+          <div
+            key={d}
+            className="rounded-lg bg-foreground/[0.02] border border-border/30 px-3 py-2.5 flex items-center gap-3"
+          >
+            <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground font-medium w-10 shrink-0">
+              {d}
+            </span>
+            <div className="flex flex-wrap gap-1.5 flex-1">
+              {events[d].length === 0 ? (
+                <span className="text-[10px] text-muted-foreground/60 italic">No posts</span>
+              ) : (
+                events[d].map((e) => (
+                  <span
+                    key={e.label}
+                    className={`rounded-md ${e.tone} px-2 py-0.5 text-[10px] font-medium leading-tight`}
+                  >
+                    {e.label}
+                  </span>
+                ))
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Tablet+ — week grid */}
+      <div className="hidden sm:grid grid-cols-7 gap-1.5">
+        {days.map((d) => (
+          <div key={d} className="rounded-lg bg-foreground/[0.02] border border-border/30 p-2 min-h-[140px] overflow-hidden">
             <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium mb-2 text-center">
               {d}
             </p>
@@ -159,7 +188,7 @@ export function ChatVisual() {
   ];
   return (
     <Frame label="Support Agent" status="Live">
-      <div className="space-y-3 max-h-[360px] overflow-hidden">
+      <div className="space-y-3 lg:max-h-[420px] lg:overflow-hidden">
         {messages.map((m, i) => (
           <motion.div
             key={i}
