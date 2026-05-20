@@ -11,11 +11,14 @@ const H = meta.height;
 
 console.log(`Grid: ${W}x${H}`);
 
-// Smaller cellH and shifted row centers to avoid section labels ("KIRO", "ORBIT")
+// Per-row config — row 0 (Juntos) gets more headroom for the fox ears
 const cellW = Math.round(W * 0.235);
-const cellH = Math.round(H * 0.255);
+const rowConfig = [
+  { centerY: 0.215, cellH: 0.285 }, // Row 0 — Kiro+Orbit (taller, shifted up for ears)
+  { centerY: 0.555, cellH: 0.255 }, // Row 1 — Kiro solo
+  { centerY: 0.875, cellH: 0.255 }, // Row 2 — Orbit solo
+];
 
-const rowCentersY = [0.225, 0.555, 0.875].map((r) => Math.round(H * r));
 const colCentersX = [0.125, 0.375, 0.625, 0.875].map((c) => Math.round(W * c));
 
 const poses = [
@@ -127,8 +130,10 @@ function removeBackgroundFloodFill(data, width, height, threshold = 30) {
 }
 
 for (const pose of poses) {
+  const cfg = rowConfig[pose.row];
+  const cellH = Math.round(H * cfg.cellH);
+  const cy = Math.round(H * cfg.centerY);
   const cx = colCentersX[pose.col];
-  const cy = rowCentersY[pose.row];
   const left = Math.max(0, cx - Math.round(cellW / 2));
   const top = Math.max(0, cy - Math.round(cellH / 2));
   const width = Math.min(cellW, W - left);
