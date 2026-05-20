@@ -941,6 +941,10 @@ export default function Home() {
           </div>
           <div className="mx-auto max-w-[1200px]">
             <FadeIn className="max-w-3xl mb-14">
+              {/* Mobile mascot — above headline */}
+              <div className="lg:hidden mb-6 flex justify-end pointer-events-none">
+                <Mascot src="orbit-front.png" alt="Orbit looking forward" width={130} float />
+              </div>
               <EyebrowTag>What we automate</EyebrowTag>
               <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium tracking-[-0.03em] leading-[1.02] text-balance">
                 One studio. Six disciplines.{" "}
@@ -1051,6 +1055,10 @@ export default function Home() {
                         <Mascot src={f.mascot} alt={f.mascotAlt} width={140} float delay={0.05} />
                       </div>
                     )}
+                    {/* Mobile mascot — above the feature heading */}
+                    <div className="md:hidden mb-4 flex justify-end pointer-events-none">
+                      <Mascot src={f.mascot} alt={f.mascotAlt} width={130} float delay={0.05} />
+                    </div>
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       Feature / {f.n}
                     </span>
@@ -1158,28 +1166,30 @@ export default function Home() {
               </h2>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 relative">
-              <div
-                aria-hidden
-                className="hidden md:block absolute top-[40px] left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
-              />
-              {process.map((p, i) => (
-                <FadeIn key={p.step} delay={i * 0.07}>
-                  <div className="relative flex flex-col gap-4">
-                    <div className="absolute -top-8 -right-2 z-10 pointer-events-none">
-                      <Mascot src={p.mascot} alt={p.mascotAlt} width={90} float delay={i * 0.1} />
+              {process.map((p, i) => {
+                const isLast = i === 2;
+                const mascotWidth = isLast ? 140 : 120;
+                // 03 sits a bit lower (different mascot proportions)
+                const mascotTop = isLast ? "top-10" : "top-2";
+                return (
+                  <FadeIn key={p.step} delay={i * 0.07}>
+                    <div className="relative flex flex-col gap-4 pt-6">
+                      <div className={`absolute ${mascotTop} right-0 z-10 pointer-events-none`}>
+                        <Mascot src={p.mascot} alt={p.mascotAlt} width={mascotWidth} float delay={i * 0.1} />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-6xl font-extralight tracking-tight text-foreground/90 tabular-nums">
+                          {p.step}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-medium tracking-tight">{p.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-[1.65] max-w-sm">
+                        {p.description}
+                      </p>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-6xl font-extralight tracking-tight text-foreground/90 tabular-nums">
-                        {p.step}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-medium tracking-tight">{p.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-[1.65] max-w-sm">
-                      {p.description}
-                    </p>
-                  </div>
-                </FadeIn>
-              ))}
+                  </FadeIn>
+                );
+              })}
             </div>
           </div>
         </section>
