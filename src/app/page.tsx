@@ -1168,13 +1168,11 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 relative">
               {process.map((p, i) => {
                 const isLast = i === 2;
-                const mascotWidth = isLast ? 140 : 120;
-                // 03 sits a bit lower (different mascot proportions)
-                const mascotTop = isLast ? "top-10" : "top-2";
+                const mascotWidth = isLast ? 130 : 120;
                 return (
                   <FadeIn key={p.step} delay={i * 0.07}>
                     <div className="relative flex flex-col gap-4 pt-6">
-                      <div className={`absolute ${mascotTop} right-0 z-10 pointer-events-none`}>
+                      <div className="absolute top-0 right-0 z-10 pointer-events-none flex items-start h-[120px]">
                         <Mascot src={p.mascot} alt={p.mascotAlt} width={mascotWidth} float delay={i * 0.1} />
                       </div>
                       <div className="flex items-center justify-between">
