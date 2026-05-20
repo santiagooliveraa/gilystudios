@@ -21,7 +21,7 @@ export function Mascot({ src, alt, width = 200, height = 200, className = "", fl
       className={`inline-flex ${className}`}
     >
       <motion.img
-        src={`/mascots/${src}`}
+        src={`/mascots/${src}?v=2`}
         alt={alt}
         width={width}
         height={height}
