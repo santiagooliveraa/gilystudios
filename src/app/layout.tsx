@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://gilystudios.com";
+const siteUrl = "https://gilystudios.vercel.app";
 const siteDescription =
   "Creative & AI studio for founders and small brands building from scratch. AI workflows, premium websites, brand systems, motion. From idea to live in days, not months.";
 
