@@ -26,6 +26,10 @@ import { DashboardMockup } from "@/components/dashboard-mockup";
 import { CountUp } from "@/components/count-up";
 import { Mascot } from "@/components/mascot";
 import { HeroPrompt } from "@/components/hero-prompt";
+import { HeroHeadline } from "@/components/hero-headline";
+import { KineticMarquee } from "@/components/kinetic-marquee";
+import { SpotlightCard } from "@/components/spotlight-card";
+import { SiteHeader } from "@/components/site-header";
 
 const proofTiles = [
   {
@@ -769,30 +773,7 @@ function FeatureVisualWork() {
 export default function Home() {
   return (
     <>
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6">
-        <div className="flex items-center gap-6 rounded-full border border-border/60 bg-background/60 backdrop-blur-xl pl-5 pr-1.5 py-1.5 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)]">
-          <Link href="/" className="text-sm font-semibold tracking-tight">
-            GilyStudios
-            <sup className="text-[8px] ml-0.5 font-normal text-muted-foreground">™</sup>
-          </Link>
-          <nav className="hidden md:flex items-center gap-5 text-xs text-muted-foreground">
-            <Link href="#services" className="hover:text-foreground transition-colors duration-200">Services</Link>
-            <Link href="#features" className="hover:text-foreground transition-colors duration-200">Why us</Link>
-            <Link href="#process" className="hover:text-foreground transition-colors duration-200">Process</Link>
-            <Link href="#contact" className="hover:text-foreground transition-colors duration-200">Contact</Link>
-          </nav>
-          <Link
-            href="#contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-foreground text-background text-xs font-medium pl-3.5 pr-1.5 py-1.5 transition-transform duration-200 active:scale-[0.97]"
-            style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
-          >
-            <span>Start a project</span>
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-background/15">
-              <ArrowUpRight className="h-2.5 w-2.5 transition-transform duration-300 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]" strokeWidth={2} />
-            </span>
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-1">
         {/* ─────────── HERO — Centered with demo card ─────────── */}
@@ -806,22 +787,17 @@ export default function Home() {
 
 
           <div className="relative mx-auto max-w-[1100px] flex flex-col items-center text-center">
-            <FadeIn>
+            <FadeIn delay={1.7}>
               <EyebrowTag>Creative & AI Studio · est. 2026</EyebrowTag>
             </FadeIn>
-            <FadeIn delay={0.05}>
-              <h1 className="mt-7 text-[clamp(2.75rem,8vw,7rem)] font-medium tracking-[-0.04em] leading-[0.92] text-balance">
-                Where creativity meets{" "}
-                <span className="text-primary italic font-light">automation</span>.
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.1}>
+            <HeroHeadline />
+            <FadeIn delay={2.2}>
               <p className="mt-8 max-w-xl text-base sm:text-lg text-muted-foreground leading-[1.6] text-balance">
                 We design, build, and automate beautiful things. AI workflows, premium
                 websites, and digital experiences for any business, from scratch.
               </p>
             </FadeIn>
-            <FadeIn delay={0.15} className="w-full">
+            <FadeIn delay={2.35} className="w-full">
               <div className="mt-10">
                 <HeroPrompt />
               </div>
@@ -842,31 +818,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─────────── KINETIC MARQUEE ─────────── */}
-        <div className="relative overflow-hidden border-y border-border/30 py-5 bg-foreground/[0.02]">
-          <div className="flex gap-10 whitespace-nowrap animate-[marquee_42s_linear_infinite]">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex gap-10 items-center text-2xl md:text-3xl font-medium tracking-tight shrink-0">
-                <span>AI Automation</span>
-                <span className="text-primary">/</span>
-                <span>Voice Agents</span>
-                <span className="text-primary">/</span>
-                <span>Web Development</span>
-                <span className="text-primary">/</span>
-                <span>Brand Architecture</span>
-                <span className="text-primary">/</span>
-                <span>Art Direction</span>
-                <span className="text-primary">/</span>
-                <span>Data Integration</span>
-                <span className="text-primary">/</span>
-                <span>AI Workers</span>
-                <span className="text-primary">/</span>
-                <span>Creative Production</span>
-                <span className="text-primary">/</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* ─────────── KINETIC MARQUEE — scroll-velocity reactive ─────────── */}
+        <KineticMarquee
+          items={[
+            "AI Automation",
+            "Voice Agents",
+            "Web Development",
+            "Brand Architecture",
+            "Art Direction",
+            "Data Integration",
+            "AI Workers",
+            "Creative Production",
+          ]}
+        />
 
         {/* ─────────── VIDEOS — clean strip, no labels ─────────── */}
         <section id="work" className="relative px-4 sm:px-6 md:px-12 lg:px-16 py-12 sm:py-16 lg:py-20">
@@ -875,7 +839,7 @@ export default function Home() {
               {["work-01.mp4", "work-02.mp4", "work-03.mp4"].map((src) => (
                 <div
                   key={src}
-                  className="relative aspect-video rounded-2xl overflow-hidden border border-border/40 bg-zinc-950"
+                  className="video-tile relative aspect-video rounded-2xl overflow-hidden border border-border/40 bg-zinc-950"
                 >
                   <video
                     src={`/videos/${src}`}
@@ -905,9 +869,9 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
               {capabilities.map((c) => (
-                <div
+                <SpotlightCard
                   key={c.label}
-                  className="group relative rounded-2xl bg-foreground/[0.025] border border-border/40 p-4 transition-all duration-300 hover:bg-foreground/[0.05] hover:border-border/70"
+                  className="group relative rounded-2xl bg-foreground/[0.025] border border-border/40 p-4 transition-all duration-300 hover:bg-foreground/[0.05] hover:border-border/70 hover:-translate-y-0.5"
                   style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
                 >
                   <div className="flex items-start justify-between mb-3">
@@ -924,7 +888,7 @@ export default function Home() {
                   <p className="mt-1.5 text-[11px] text-muted-foreground leading-snug">
                     {c.desc}
                   </p>
-                </div>
+                </SpotlightCard>
               ))}
             </div>
             <p className="mt-8 text-center text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -948,7 +912,7 @@ export default function Home() {
               <EyebrowTag>What we automate</EyebrowTag>
               <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium tracking-[-0.03em] leading-[1.02] text-balance">
                 One studio. Six disciplines.{" "}
-                <span className="text-primary italic font-light">Pick a flow.</span>
+                <span className="text-gradient-primary italic font-light">Pick a flow.</span>
               </h2>
               <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-[1.6] max-w-xl">
                 Every business has its own bottlenecks. We map yours and build the
@@ -998,7 +962,7 @@ export default function Home() {
             }}
           >
             <div
-              className="flex gap-4 w-max"
+              className="flex gap-4 w-max hover:[animation-play-state:paused]"
               style={{ animation: "proof-marquee 48s linear infinite" }}
             >
               {[...proofTiles, ...proofTiles].map((p, i) => (
@@ -1105,17 +1069,17 @@ export default function Home() {
               <EyebrowTag>Stack we ship with</EyebrowTag>
               <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.05] text-balance">
                 Production-grade tools.{" "}
-                <span className="text-primary italic font-light">No fluff.</span>
+                <span className="text-gradient-primary italic font-light">No fluff.</span>
               </h2>
             </FadeIn>
             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
               {stack.map((tool, i) => (
                 <FadeIn key={tool} delay={Math.min(i * 0.03, 0.3)}>
-                  <div className="rounded-2xl bg-foreground/[0.03] border border-border/40 h-20 flex items-center justify-center transition-all duration-300 hover:bg-foreground/[0.06] hover:border-border/80"
+                  <SpotlightCard className="rounded-2xl bg-foreground/[0.03] border border-border/40 h-20 flex items-center justify-center transition-all duration-300 hover:bg-foreground/[0.06] hover:border-border/80 hover:-translate-y-0.5"
                     style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
                   >
                     <span className="text-sm font-medium tracking-tight text-foreground/80">{tool}</span>
-                  </div>
+                  </SpotlightCard>
                 </FadeIn>
               ))}
             </div>
@@ -1129,13 +1093,13 @@ export default function Home() {
               <EyebrowTag>All disciplines</EyebrowTag>
               <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.05] text-balance">
                 Six things, done{" "}
-                <span className="text-primary italic font-light">obsessively well</span>.
+                <span className="text-gradient-primary italic font-light">obsessively well</span>.
               </h2>
             </FadeIn>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {services.map((s, i) => (
-                <FadeIn key={s.title} delay={Math.min(i * 0.04, 0.2)}>
-                  <article className="group rounded-2xl bg-foreground/[0.03] border border-border/40 p-6 h-full flex flex-col gap-4 transition-all duration-300 hover:bg-foreground/[0.05] hover:border-border/80"
+                <FadeIn key={s.title} delay={Math.min(i * 0.04, 0.2)} className="h-full">
+                  <SpotlightCard className="group rounded-2xl bg-foreground/[0.03] border border-border/40 p-6 h-full flex flex-col gap-4 transition-all duration-300 hover:bg-foreground/[0.05] hover:border-border/80 hover:-translate-y-1"
                     style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
                   >
                     <div className="flex items-center justify-between">
@@ -1148,7 +1112,7 @@ export default function Home() {
                     </div>
                     <h3 className="text-lg font-medium tracking-tight">{s.title}</h3>
                     <p className="text-sm text-muted-foreground leading-[1.55]">{s.tagline}</p>
-                  </article>
+                  </SpotlightCard>
                 </FadeIn>
               ))}
             </div>
@@ -1162,7 +1126,7 @@ export default function Home() {
               <EyebrowTag>How it works</EyebrowTag>
               <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium tracking-[-0.03em] leading-[1.02] text-balance">
                 Simple, transparent,{" "}
-                <span className="text-primary italic font-light">no drama</span>.
+                <span className="text-gradient-primary italic font-light">no drama</span>.
               </h2>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 relative">
@@ -1203,7 +1167,7 @@ export default function Home() {
               <EyebrowTag>Let&apos;s build</EyebrowTag>
               <h2 className="mt-6 text-[clamp(2.75rem,7vw,6rem)] font-medium tracking-[-0.04em] leading-[0.95] text-balance">
                 Have an idea?{" "}
-                <span className="text-primary italic font-light">Say hi.</span>
+                <span className="text-gradient-primary italic font-light">Say hi.</span>
               </h2>
               <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-[1.6] max-w-xl">
                 Tell us a bit about your business and what you want to build. We reply
@@ -1216,7 +1180,7 @@ export default function Home() {
                   {/* Primary — Email */}
                   <a
                     href="mailto:Gilystudios@gmail.com?subject=New%20project%20%E2%80%94%20GilyStudios"
-                    className="group flex items-center justify-between gap-4 rounded-2xl bg-foreground text-background px-5 py-4 transition-all duration-300 active:scale-[0.98]"
+                    className="btn-shine group flex items-center justify-between gap-4 rounded-2xl bg-foreground text-background px-5 py-4 transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5"
                     style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
                   >
                     <div className="flex items-center gap-3">
@@ -1285,10 +1249,6 @@ export default function Home() {
       </footer>
 
       <style>{`
-        @keyframes marquee {
-          from { transform: translate3d(0, 0, 0); }
-          to { transform: translate3d(-50%, 0, 0); }
-        }
         @keyframes proof-marquee {
           from { transform: translate3d(0, 0, 0); }
           to { transform: translate3d(-50%, 0, 0); }
