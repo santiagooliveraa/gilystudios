@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
 import { ArrowUpRight, Globe, LayoutGrid, Mail, MessageSquare } from "lucide-react";
-import { FadeIn } from "@/components/fade-in";
+import { MountReveal } from "@/components/mount-reveal";
 import { LinkAvatar } from "@/components/link-avatar";
 
 type GlyphProps = { className?: string; strokeWidth?: number };
@@ -92,7 +92,7 @@ export default function LinksPage() {
   return (
     <main className="relative flex min-h-svh flex-col items-center justify-center px-6 py-16">
       <div className="w-full max-w-[420px]">
-        <FadeIn className="flex flex-col items-center text-center" y={12}>
+        <MountReveal className="flex flex-col items-center text-center" y={12}>
           <span className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
             Creative &amp; AI studio
           </span>
@@ -118,11 +118,11 @@ export default function LinksPage() {
             </span>
             Taking on new projects
           </p>
-        </FadeIn>
+        </MountReveal>
 
         <div className="mt-10 flex flex-col gap-3">
           {links.map(({ href, label, caption, icon: Icon, primary, accent, external }, i) => (
-            <FadeIn key={href} delay={0.08 + i * 0.06} y={14}>
+            <MountReveal key={href} delay={0.08 + i * 0.06} y={14}>
               <a
                 href={href}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -150,15 +150,15 @@ export default function LinksPage() {
                   />
                 </span>
               </a>
-            </FadeIn>
+            </MountReveal>
           ))}
         </div>
 
-        <FadeIn delay={0.4} y={10}>
+        <MountReveal delay={0.4} y={10}>
           <p className="mt-10 text-center text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
             © {new Date().getFullYear()} GilyStudios™ · Built in-house
           </p>
-        </FadeIn>
+        </MountReveal>
       </div>
     </main>
   );
