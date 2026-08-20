@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
-import { ArrowUpRight, Globe, LayoutGrid, Mail, MessageSquare } from "lucide-react";
+import { ArrowUpRight, FileText, Globe, LayoutGrid, Mail, MessageSquare } from "lucide-react";
 import { MountReveal } from "@/components/mount-reveal";
 import { LinkAvatar } from "@/components/link-avatar";
 
@@ -29,7 +29,8 @@ function InstagramGlyph({ className, strokeWidth = 1.75 }: GlyphProps) {
 interface LinkItem {
   href: string;
   label: string;
-  caption: string;
+  /** Small line above the label. Omit to let the label stand on its own. */
+  caption?: string;
   icon: ComponentType<GlyphProps>;
   primary?: boolean;
   accent?: string;
@@ -38,18 +39,22 @@ interface LinkItem {
 
 export const metadata: Metadata = {
   title: "Links",
-  description: "Every GilyStudios link in one place — website, portfolio, WhatsApp, Instagram and email.",
+  description:
+    "Every GilyStudios link in one place — website, portfolio, the sites we've built, WhatsApp, Instagram and email.",
   robots: { index: false, follow: false },
 };
 
+/** How we work — the studio deck. */
 const PORTFOLIO_URL =
   "https://drive.google.com/file/d/1Vs6D2Otm-lHplSPQVVJ41hhO1Wk8El48/view?usp=sharing";
+
+const WEBSITES_URL = "/links/websites";
 
 const links: LinkItem[] = [
   {
     href: "https://gilystudios.vercel.app",
     label: "Website",
-    caption: "See how it works",
+    caption: "The studio",
     icon: Globe,
     primary: true,
     external: false,
@@ -57,10 +62,17 @@ const links: LinkItem[] = [
   {
     href: PORTFOLIO_URL,
     label: "Portfolio",
-    caption: "Selected work",
-    icon: LayoutGrid,
+    caption: "How we work",
+    icon: FileText,
     accent: "text-amber-300",
     external: true,
+  },
+  {
+    href: WEBSITES_URL,
+    label: "Websites we built",
+    icon: LayoutGrid,
+    accent: "text-violet-300",
+    external: false,
   },
   {
     href: "https://wa.me/61404354280?text=Hi%20GilyStudios%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
@@ -128,16 +140,18 @@ export default function LinksPage() {
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className={
                   primary
-                    ? "group flex flex-col items-center gap-1 rounded-2xl bg-foreground px-5 py-4 text-center text-background transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
-                    : "group flex flex-col items-center gap-1 rounded-2xl border border-border/40 bg-foreground/[0.04] px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground/[0.08] active:scale-[0.98]"
+                    ? "group flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-2xl bg-foreground px-5 py-4 text-center text-background transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                    : "group flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-2xl border border-border/40 bg-foreground/[0.04] px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground/[0.08] active:scale-[0.98]"
                 }
                 style={{ transitionTimingFunction: "var(--ease-out-strong)" }}
               >
-                <span
-                  className={`text-[10px] uppercase tracking-[0.2em] ${primary ? "text-background/55" : "text-muted-foreground"}`}
-                >
-                  {caption}
-                </span>
+                {caption ? (
+                  <span
+                    className={`text-[10px] uppercase tracking-[0.2em] ${primary ? "text-background/55" : "text-muted-foreground"}`}
+                  >
+                    {caption}
+                  </span>
+                ) : null}
                 <span className="flex max-w-full items-center justify-center gap-2">
                   <Icon
                     className={`h-4 w-4 shrink-0 ${primary ? "text-background/70" : accent ?? "text-foreground"}`}
